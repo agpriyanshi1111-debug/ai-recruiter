@@ -43,27 +43,38 @@ h1, h2, h3 {
 """, unsafe_allow_html=True)
 
 # =====================================================
-# LOAD DATA
 # =====================================================
-
-
-# BASE PATH SAFE FOR ALL ENVIRONMENTS
+# LOAD DATA (DEPLOYMENT SAFE VERSION)
+# =====================================================
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 CSV_PATH = os.path.join(BASE_DIR, "output", "submission.csv")
 
-# AUTO-GENERATE IF MISSING
+# Check file existence
 if not os.path.exists(CSV_PATH):
-    st.warning("submission.csv not found. Generating now...")
+    st.error(
+        """
+        ❌ submission.csv not found!
 
-    subprocess.run([sys.executable, "-m", "backend.app"])
+        👉 Fix:
+        1. Run locally: python -m backend.app
+        2. Ensure file exists in output/submission.csv
+        3. Push it to GitHub
+        """
+    )
+    st.stop()
 
-    if not os.path.exists(CSV_PATH):
-        st.error("Still not generated. Check backend.app")
+# Safe loading
+try:
+    df = pd.read_csv(CSV_PATH)
+
+    # extra safety check
+    if df.empty:
+        st.error("submission.csv is empty. Please regenerate.")
         st.stop()
 
-# LOAD DATA
-df = pd.read_csv(CSV_PATH)
-
+except Exception as e:
+    st.error(f"Error loading CSV: {e}")
+    st.stop()
 # =====================================================
 # HELPERS
 # =====================================================
