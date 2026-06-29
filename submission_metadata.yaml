@@ -1,0 +1,62 @@
+# Redrob Hackathon — Submission Metadata
+
+team_name: "solo-participant"
+
+primary_contact:
+  name: "Priyanshi Agrawal"
+  email: "agpriyanshi1111@gmail.com"
+  phone: "+91-8272822418"
+
+team_members:
+  - name: "Priyanshi Agrawal"
+    email: "agpriyanshi1111@gmail.com"
+    role: "Solo Participant"
+
+github_repo: "https://github.com/agpriyanshi1111-debug/ai-recruiter"
+
+sandbox_link: "https://agpriyanshi1111-debug-ai-recruiter-streamlit-app-xdsfgk.streamlit.app/"
+
+reproduce_command: "python -m backend.app"
+
+compute:
+  platform: "Local machine"
+  cpu_cores: 4
+  ram_gb: 16
+  python_version: "3.10+"
+  os: "Windows / Linux / macOS"
+  uses_gpu_for_inference: false
+  has_network_during_ranking: false
+  pre_computation_required: false
+  pre_computation_time_minutes: 0
+
+ai_tools_used:
+  - "ChatGPT"
+
+ai_usage_summary: |
+  Used ChatGPT for architecture design, debugging support, and code optimization suggestions.
+  No candidate data was processed or sent to any external model.
+  All ranking logic runs locally and deterministically.
+
+methodology_summary: |
+  A multi-signal deterministic candidate ranking system designed for retrieval-heavy ML roles.
+  It combines:
+  - Skill fit scoring (40%) using both explicit skills and full career text extraction
+  - Title & career trajectory scoring (20%) to detect alignment with ML/search engineering roles
+  - Experience depth scoring (20%) with optimal weighting for 5–9 years range
+  - Location preference scoring (10%) based on hiring geography constraints
+  - Education tier scoring (10%) with slight bonus for relevant fields
+
+  A behavioral multiplier (0.3–1.3x) adjusts ranking based on real-world hiring signals
+  like activity recency, recruiter engagement, open-to-work status, notice period, and GitHub activity.
+
+  Honeypot detection penalizes inconsistent timelines, unrealistic skill endorsements,
+  and fabricated activity signals.
+
+  System is fully offline, CPU-only, and reproducible in under ~2 minutes for 100K candidates.
+
+declarations:
+  read_submission_spec: true
+  code_is_original_work: true
+  no_collusion: true
+  honeypot_check_done: true
+  reproduction_tested: true
